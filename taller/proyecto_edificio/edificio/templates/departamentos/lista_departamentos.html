@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Lista de Departamentos</h2>
+<table id="departamentos-table" class="display">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Propietario</th>
+            <th>Costo</th>
+            <th>Numero de cuartos</th>
+            <th>Edificio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for departamento in departamentos %}
+        <tr>
+            <td>{{ departamento.nombre }}</td>
+            <td>{{ departamento.propietario }}</td>
+            <td>{{ departamento.costo }}</td>
+            <td>{{ departamento.numero_cuartos }}</td>
+            <td>{{ departamento.departamentos }}</td>
+            <td>
+
+            </td>
+            <td>{{ departamento.total_cuartos }}</td>
+            <td>${{ departamento.costo_total_departamentos }}</td>
+            <td>
+                <a href="{% url 'departamento_editar' pk=departamento.pk %}">Editar</a>
+                <a href="{% url 'departamento_eliminar' pk=departamento.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('#departamentos-table').DataTable();
+    });
+</script>
+{% endblock %}

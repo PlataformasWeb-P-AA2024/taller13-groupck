@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Lista de Edificios</h2>
+<table id="edificios-table" class="display">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>Tipo</th>
+            <th>Departamentos</th>
+            <th>Total Cuartos</th>
+            <th>Costo Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for edificio in edificios %}
+        <tr>
+            <td>{{ edificio.nombre }}</td>
+            <td>{{ edificio.direccion }}</td>
+            <td>{{ edificio.ciudad }}</td>
+            <td>{{ edificio.get_tipo_display }}</td>
+            <td>
+                <ul>
+                    {% for depto in edificio.departamentos.all %}
+                    <li>{{ depto.nombre_propietario }} - ${{ depto.costo }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>{{ edificio.total_cuartos }}</td>
+            <td>${{ edificio.costo_total_departamentos }}</td>
+            <td>
+                <a href="{% url 'edificio_editar' pk=edificio.pk %}">Editar</a>
+                <a href="{% url 'edificio_eliminar' pk=edificio.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('#edificios-table').DataTable();
+    });
+</script>
+{% endblock %}

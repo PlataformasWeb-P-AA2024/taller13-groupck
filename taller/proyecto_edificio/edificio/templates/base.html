@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestión de Edificios{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gestión de Edificios</h1>
+        <nav>
+            <a href="{% url 'lista_edificios' %}">Lista de Edificios</a>
+            <a href="{% url 'lista_departamentos' %}">Lista de Departamentos</a>
+            <a href="{% url 'edificio_nuevo' %}">Nuevo Edificio</a>
+            <a href="{% url 'departamento_nuevo' %}">Nuevo Departamento</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Gestión de Edificios</p>
+    </footer>
+</body>
+</html>
